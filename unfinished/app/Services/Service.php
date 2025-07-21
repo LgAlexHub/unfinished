@@ -1,0 +1,21 @@
+<?php
+
+namespace App\Services;
+
+use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Model;
+use App\DataTransferObject\DTOInterface;
+
+abstract class Service
+{
+
+    /**
+     * @param Request $request Injected HTTP request to get auth user
+     */
+    public function __construct(protected Request $request) {}
+
+    abstract public function store(DTOInterface $dto, ?array $args): Model;
+    abstract public function update(DTOInterface $dto, Model $model): Model;
+    abstract public function collection(DTOInterface $dto, array $args): mixed;
+    abstract public function destroy(Model $model): ?bool;
+}
