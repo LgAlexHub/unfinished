@@ -1,8 +1,0 @@
-{
-    "scripts": {
-        "pint-fix": "./vendor/bin/pint --preset psr12 -v"
-    },
-    "require-dev": {
-        "laravel/pint": "^1.24"
-    }
-}
