@@ -17,8 +17,9 @@
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
+        "larastan/larastan": "^3.6",
         "laravel/pail": "^1.2.2",
-        "laravel/pint": "^1.18",
+        "laravel/pint": "^1.24",
         "laravel/sail": "^1.41",
         "mockery/mockery": "^1.6",
         "nunomaduro/collision": "^8.6",
@@ -37,6 +38,19 @@
         }
     },
     "scripts": {
+        "pint-fix": [
+            "powershell -Command Clear-Host",
+            "./vendor/bin/pint --preset psr12 -v"
+        ],
+        "larastan": [
+            "powershell -Command Clear-Host",
+            "./vendor/bin/phpstan analyse --memory-limit=2G"
+        ],
+        "code-analyze": [
+            "cls",
+            "./vendor/bin/pint --preset psr12 -v",
+            "./vendor/bin/phpstan analyse --memory-limit=2G"
+        ],
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi"
