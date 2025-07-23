@@ -38,7 +38,7 @@
         }
     },
     "scripts": {
-        "pint-fix": [
+        "pint": [
             "powershell -Command Clear-Host",
             "./vendor/bin/pint --preset psr12 -v"
         ],
@@ -47,8 +47,9 @@
             "./vendor/bin/phpstan analyse --memory-limit=2G"
         ],
         "code-analyze": [
-            "cls",
+            "powershell -Command \"Clear-Host; Write-Host '============== PINT =============='\"",
             "./vendor/bin/pint --preset psr12 -v",
+            "powershell -Command \"Write-Host '============== LARASTAN =============='\"",
             "./vendor/bin/phpstan analyse --memory-limit=2G"
         ],
         "post-autoload-dump": [
