@@ -17,7 +17,7 @@ class Material extends Model
     ];
 
     /**
-     * @return BelongsTo <this, MaterialType>
+     * @return BelongsTo <MaterialType, $this>
      */
     public function type(): BelongsTo
     {
@@ -25,7 +25,7 @@ class Material extends Model
     }
 
     /**
-     * @return HasMany <this, MaterialState>
+     * @return HasMany <MaterialState, $this>
      */
     public function states(): HasMany
     {
@@ -33,7 +33,7 @@ class Material extends Model
     }
 
     /**
-     * @return BelongsToMany <this, Member>
+     * @return BelongsToMany <Member, $this>
      */
     public function borrowers(): BelongsToMany
     {
@@ -41,6 +41,9 @@ class Material extends Model
             ->withPivot(['borrowed_at', 'returned_at']);
     }
 
+    /**
+     * @return MaterialState|null
+     */
     public function currentState(): ?MaterialState
     {
         return $this->states()->orderBy('version', 'desc')->first();

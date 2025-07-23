@@ -18,7 +18,7 @@ class Member extends Model
     ];
 
     /**
-     * @return BelongsTo<this, Contact>
+     * @return hasMany<Contact, $this>
      */
     public function contact(): HasMany
     {
@@ -26,11 +26,11 @@ class Member extends Model
     }
 
     /**
-     * @return BelongsToMany <this, Member>
+     * @return BelongsToMany <Contact, $this>
      */
-    public function borrowed(): BelongsToMany
-    {
-        return $this->belongsToMany(Material::class, 'material_member')
-            ->withPivot(['borrowed_at', 'returned_at']);
-    }
+    // public function borrowed(): BelongsToMany
+    // {
+    //     return $this->belongsToMany(Material::class, 'material_member')
+    //         ->withPivot(['borrowed_at', 'returned_at']);
+    // }
 }

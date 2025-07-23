@@ -2,11 +2,11 @@
 
 namespace App\DataTransferObject;
 
-use Illuminate\Http\Request;
+use Illuminate\Foundation\Http\FormRequest;
 
 readonly class ContactDTO implements DTOInterface
 {
-    public function __construct(
+    final public function __construct(
         public string $first_name,
         public string $last_name,
         public string $phone_number,
@@ -14,7 +14,7 @@ readonly class ContactDTO implements DTOInterface
     ) {
     }
 
-    public static function fromRequest(Request $request): static
+    public static function fromRequest(FormRequest $request): static
     {
         return new static(
             first_name: $request->validated('first_name'),

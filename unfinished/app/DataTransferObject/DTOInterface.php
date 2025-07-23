@@ -2,9 +2,9 @@
 
 namespace App\DataTransferObject;
 
-use Illuminate\Http\Request;
+use Illuminate\Foundation\Http\FormRequest;
 
 interface DTOInterface
 {
-    public static function fromRequest(Request $request): static;
+    public static function fromRequest(FormRequest $request): static;
 }

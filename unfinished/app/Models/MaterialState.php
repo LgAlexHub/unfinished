@@ -16,7 +16,7 @@ class MaterialState extends Model
     ];
 
     /**
-     * @return BelongsTo <this, Material>
+     * @return BelongsTo <Material, $this>
      */
     public function material(): BelongsTo
     {

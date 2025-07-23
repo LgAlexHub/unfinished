@@ -18,7 +18,7 @@ class Contact extends Model
     ];
 
     /**
-     * @return BelongsTo<this, Member>
+     * @return BelongsTo<Member, $this>
      */
     public function contact(): BelongsTo
     {
