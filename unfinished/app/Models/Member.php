@@ -14,7 +14,7 @@ class Member extends Model
         'joined_at',
         'is_minor',
         'created_at',
-        'updated_at'
+        'updated_at',
     ];
 
     /**
@@ -33,6 +33,4 @@ class Member extends Model
         return $this->belongsToMany(Material::class, 'material_member')
             ->withPivot(['borrowed_at', 'returned_at']);
     }
-
-    
 }

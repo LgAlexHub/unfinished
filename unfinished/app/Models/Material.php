@@ -13,7 +13,7 @@ class Material extends Model
         'name',
         'material_type_id',
         'created_at',
-        'updated_at'
+        'updated_at',
     ];
 
     /**
@@ -41,9 +41,6 @@ class Material extends Model
             ->withPivot(['borrowed_at', 'returned_at']);
     }
 
-    /**
-     * @return MaterialState|null
-     */
     public function currentState(): ?MaterialState
     {
         return $this->states()->orderBy('version', 'desc')->first();

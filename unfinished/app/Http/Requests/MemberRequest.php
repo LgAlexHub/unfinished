@@ -26,7 +26,7 @@ class MemberRequest extends FormRequest
             'first_name' => ['required', 'string', 'min:3'],
             'last_name' => ['required', 'string', 'min:3'],
             'joined_at' => ['nullable',  'date'],
-            'is_minor' => ['nullable', 'boolean']
+            'is_minor' => ['nullable', 'boolean'],
         ];
     }
 }

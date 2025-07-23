@@ -25,7 +25,7 @@ class ContactRequest extends FormRequest
             'first_name' => ['nullable', 'string', 'min:3'],
             'last_name' => ['nullable', 'string', 'min:3'],
             'phone_number' => ['required', 'string', 'between:10,12'],
-            'email' => ['required', 'email']
+            'email' => ['required', 'email'],
         ];
     }
 }

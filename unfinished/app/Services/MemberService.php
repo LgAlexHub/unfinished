@@ -2,21 +2,20 @@
 
 namespace App\Services;
 
-use App\Models\Member;
-use Illuminate\Pipeline\Pipeline;
+use App\DataTransferObject\DTOInterface;
+use App\DataTransferObject\MemberDTO;
 use App\Filters\PaginationHandler;
 use App\Filters\RelationLoadHandler;
-use App\DataTransferObject\MemberDTO;
+use App\Models\Member;
 use Illuminate\Database\Eloquent\Model;
-use App\DataTransferObject\DTOInterface;
+use Illuminate\Pipeline\Pipeline;
 
 class MemberService extends Service
 {
-
-   public function store(DTOInterface $dto, ?array $args): Model
+    public function store(DTOInterface $dto, ?array $args): Model
     {
-        if (!$dto instanceof MemberDTO) {
-            throw new \InvalidArgumentException('Expected MemberDTO, got ' . get_class($dto));
+        if (! $dto instanceof MemberDTO) {
+            throw new \InvalidArgumentException('Expected MemberDTO, got '.get_class($dto));
         }
 
         return Member::create([
@@ -27,19 +26,14 @@ class MemberService extends Service
         ]);
     }
 
-    /**
-     * @param DTOInterface $dto
-     * @param Model $model
-     * @return Model
-     */
     public function update(DTOInterface $dto, Model $model): Model
     {
-        if (!$dto instanceof MemberDTO) {
-            throw new \InvalidArgumentException('Expected MemberDTO, got ' . get_class($dto));
+        if (! $dto instanceof MemberDTO) {
+            throw new \InvalidArgumentException('Expected MemberDTO, got '.get_class($dto));
         }
 
-        if (!$model instanceof Member) {
-            throw new \InvalidArgumentException('Expected Member model, got ' . get_class($model));
+        if (! $model instanceof Member) {
+            throw new \InvalidArgumentException('Expected Member model, got '.get_class($model));
         }
 
         $model->update([
@@ -52,11 +46,6 @@ class MemberService extends Service
         return $model;
     }
 
-    /**
-     * @param DTOInterface $dto
-     * @param array $args
-     * @return mixed
-     */
     public function collection(DTOInterface $dto, array $args): mixed
     {
         $isPaginated = $args['isPaginated'] ?? true;
@@ -75,13 +64,12 @@ class MemberService extends Service
     }
 
     /**
-     * @param Model $model Must be Member
-     * @return boolean|null
+     * @param  Model  $model  Must be Member
      */
     public function destroy(Model $model): ?bool
     {
-        if (!$model instanceof Member) {
-            throw new \InvalidArgumentException('Expected Member model, got ' . get_class($model));
+        if (! $model instanceof Member) {
+            throw new \InvalidArgumentException('Expected Member model, got '.get_class($model));
         }
 
         return $model->delete();

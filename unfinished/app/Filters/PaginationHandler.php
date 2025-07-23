@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Builder;
  * Class use in pipeline to add pagination handler
  *
  * @author Aleki <alexlegras@hotmail.com>
+ *
  * @version 1.0.0
  */
 class PaginationHandler
@@ -19,9 +20,7 @@ class PaginationHandler
     /**
      * This method is automatically call in a pipeline
      *
-     * @param Builder<\Illuminate\Database\Eloquent\Model> $query
-     * @param \Closure $next
-     * @return mixed
+     * @param  Builder<\Illuminate\Database\Eloquent\Model>  $query
      */
     public function handle(Builder $query, \Closure $next): mixed
     {

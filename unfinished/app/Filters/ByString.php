@@ -2,15 +2,16 @@
 
 namespace App\Filters;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 /**
  * Class use in pipeline to retreive model by string query
  *
  * @author Aleki <alexlegras@hotmail.com>
+ *
  * @version 1.0.1
  */
 class ByString
@@ -22,11 +23,10 @@ class ByString
     /**
      * This method is automatically call in a pipeline
      *
-     * @param Builder<\Illuminate\Database\Eloquent\Model> $query
-     * @param \Closure $next
+     * @param  Builder<\Illuminate\Database\Eloquent\Model>  $query
      * @return LengthAwarePaginator<Model> | Collection<int, Model>
      */
-    public function handle(Builder $query, \Closure $next): Collection | LengthAwarePaginator
+    public function handle(Builder $query, \Closure $next): Collection|LengthAwarePaginator
     {
         if ($this->query) {
             $terms = explode(' ', strtolower($this->query));
@@ -34,13 +34,14 @@ class ByString
                 foreach ($terms as $key => $term) {
                     $term = strtolower($term); // Convertir le terme en minuscules
                     if ($key === 0) {
-                        $subQuery->whereRaw('LOWER(' . $this->dbColumnName . ') LIKE ?', ['%' . $term . '%']);
+                        $subQuery->whereRaw('LOWER('.$this->dbColumnName.') LIKE ?', ['%'.$term.'%']);
                     } else {
-                        $subQuery->orWhereRaw('LOWER(' . $this->dbColumnName . ') LIKE ?', ['%' . $term . '%']);
+                        $subQuery->orWhereRaw('LOWER('.$this->dbColumnName.') LIKE ?', ['%'.$term.'%']);
                     }
                 }
             });
         }
+
         return $next($query);
     }
 }

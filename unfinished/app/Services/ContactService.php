@@ -2,26 +2,25 @@
 
 namespace App\Services;
 
-use App\Models\Member;
-use App\Models\Contact;
-use Illuminate\Pipeline\Pipeline;
+use App\DataTransferObject\ContactDTO;
+use App\DataTransferObject\DTOInterface;
 use App\Filters\PaginationHandler;
 use App\Filters\RelationLoadHandler;
-use App\DataTransferObject\ContactDTO;
+use App\Models\Contact;
+use App\Models\Member;
 use Illuminate\Database\Eloquent\Model;
-use App\DataTransferObject\DTOInterface;
+use Illuminate\Pipeline\Pipeline;
 
 class ContactService extends Service
 {
-
     public function store(DTOInterface $dto, ?array $args): Model
     {
-        if (!$dto instanceof ContactDTO) {
-            throw new \InvalidArgumentException('Expected ContactDTO, got ' . get_class($dto));
+        if (! $dto instanceof ContactDTO) {
+            throw new \InvalidArgumentException('Expected ContactDTO, got '.get_class($dto));
         }
 
-        if (!(isset($args['member']) && $args['member'] instanceof Member)) {
-            throw new \InvalidArgumentException("Expected Member, got " . get_class($args['member'] ?? null));
+        if (! (isset($args['member']) && $args['member'] instanceof Member)) {
+            throw new \InvalidArgumentException('Expected Member, got '.get_class($args['member'] ?? null));
         }
 
         return Contact::create([
@@ -29,23 +28,18 @@ class ContactService extends Service
             'last_name' => $dto->last_name,
             'phone_number' => $dto->phone_number,
             'email' => $dto->email,
-            'member_id' => $args['member']->id
+            'member_id' => $args['member']->id,
         ]);
     }
 
-    /**
-     * @param DTOInterface $dto
-     * @param Model $model
-     * @return Model
-     */
     public function update(DTOInterface $dto, Model $model): Model
     {
-        if (!$dto instanceof ContactDTO) {
-            throw new \InvalidArgumentException('Expected ContactDTO, got ' . get_class($dto));
+        if (! $dto instanceof ContactDTO) {
+            throw new \InvalidArgumentException('Expected ContactDTO, got '.get_class($dto));
         }
 
-        if (!$model instanceof Contact) {
-            throw new \InvalidArgumentException('Expected Contact model, got ' . get_class($model));
+        if (! $model instanceof Contact) {
+            throw new \InvalidArgumentException('Expected Contact model, got '.get_class($model));
         }
 
         $model->update([
@@ -58,11 +52,6 @@ class ContactService extends Service
         return $model;
     }
 
-    /**
-     * @param DTOInterface $dto
-     * @param array $args
-     * @return mixed
-     */
     public function collection(DTOInterface $dto, array $args): mixed
     {
         $isPaginated = $args['isPaginated'] ?? true;
@@ -80,13 +69,12 @@ class ContactService extends Service
     }
 
     /**
-     * @param Model $model Must be Contact
-     * @return boolean|null
+     * @param  Model  $model  Must be Contact
      */
     public function destroy(Model $model): ?bool
     {
-        if (!$model instanceof Contact) {
-            throw new \InvalidArgumentException('Expected Contact model, got ' . get_class($model));
+        if (! $model instanceof Contact) {
+            throw new \InvalidArgumentException('Expected Contact model, got '.get_class($model));
         }
 
         return $model->delete();

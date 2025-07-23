@@ -11,7 +11,7 @@ class MemberController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index() : \Inertia\Response
+    public function index(): \Inertia\Response
     {
         return Inertia::render('admin/members/Index', []);
     }

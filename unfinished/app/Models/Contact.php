@@ -14,13 +14,14 @@ class Contact extends Model
         'phone_number',
         'email',
         'created_at',
-        'updated_at'
+        'updated_at',
     ];
 
     /**
      * @return BelongsTo<this, Member>
      */
-    public function contact() : BelongsTo {
+    public function contact(): BelongsTo
+    {
         return $this->belongsTo(Member::class);
     }
 }

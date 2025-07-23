@@ -12,13 +12,14 @@ class MaterialState extends Model
         'version',
         'state',
         'created_at',
-        'updated_at'
+        'updated_at',
     ];
 
     /**
      * @return BelongsTo <this, Material>
      */
-    public function material() : BelongsTo {
+    public function material(): BelongsTo
+    {
         return $this->belongsTo(Material::class);
     }
 }
