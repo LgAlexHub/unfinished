@@ -2,14 +2,13 @@
 
 namespace App\Services;
 
-use App\DataTransferObject\ContactDTO;
-use App\DataTransferObject\DTOInterface;
-use App\Filters\PaginationHandler;
-use App\Filters\RelationLoadHandler;
-use App\Models\Contact;
 use App\Models\Member;
-use Illuminate\Database\Eloquent\Model;
+use App\Models\Contact;
 use Illuminate\Pipeline\Pipeline;
+use App\Filters\PaginationHandler;
+use App\DataTransferObject\ContactDTO;
+use Illuminate\Database\Eloquent\Model;
+use App\DataTransferObject\DTOInterface;
 
 class ContactService extends Service
 {
@@ -32,7 +31,7 @@ class ContactService extends Service
         ]);
     }
 
-    public function update(DTOInterface $dto, Model $model): Model
+    public function update(DTOInterface $dto, Model $model, ?array $args): Model
     {
         if (! $dto instanceof ContactDTO) {
             throw new \InvalidArgumentException('Expected ContactDTO, got '.get_class($dto));

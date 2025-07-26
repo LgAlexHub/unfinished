@@ -26,7 +26,7 @@ class MemberService extends Service
         ]);
     }
 
-    public function update(DTOInterface $dto, Model $model): Model
+    public function update(DTOInterface $dto, Model $model, ?array $args): Model
     {
         if (! $dto instanceof MemberDTO) {
             throw new \InvalidArgumentException('Expected MemberDTO, got '.get_class($dto));
@@ -63,15 +63,4 @@ class MemberService extends Service
             ->thenReturn();
     }
 
-    /**
-     * @param  Model  $model  Must be Member
-     */
-    public function destroy(Model $model): ?bool
-    {
-        if (! $model instanceof Member) {
-            throw new \InvalidArgumentException('Expected Member model, got '.get_class($model));
-        }
-
-        return $model->delete();
-    }
 }

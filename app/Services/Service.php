@@ -17,9 +17,12 @@ abstract class Service
 
     abstract public function store(DTOInterface $dto, ?array $args): Model;
 
-    abstract public function update(DTOInterface $dto, Model $model): Model;
+    abstract public function update(DTOInterface $dto, Model $model, ?array $args): Model;
 
     abstract public function collection(DTOInterface $dto, array $args): mixed;
 
-    abstract public function destroy(Model $model): ?bool;
+    public function destroy(Model $model): ?bool
+    {
+        return $model->delete();
+    }
 }

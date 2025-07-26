@@ -44,7 +44,7 @@ class Material extends Model
     /**
      * @return MaterialState|null
      */
-    public function currentState(): ?MaterialState
+    public function latestVersion(): ?MaterialState
     {
         return $this->states()->orderBy('version', 'desc')->first();
     }
