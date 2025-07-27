@@ -74,6 +74,5 @@ return new class () extends Migration {
         Schema::dropIfExists('material_types');
         Schema::dropIfExists('materials');
         Schema::dropIfExists('material_member');
-        Schema::dropIfExists('material_material_types');
     }
 };
