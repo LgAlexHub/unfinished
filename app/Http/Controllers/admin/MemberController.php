@@ -3,17 +3,22 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\MemberResource;
+use App\Services\MemberService;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class MemberController extends Controller
 {
+    public function __construct(){}
     /**
      * Display a listing of the resource.
      */
-    public function index(): \Inertia\Response
+    public function index(Request $request, MemberService $memberService): \Inertia\Response
     {
-        return Inertia::render('admin/members/Index', []);
+        return Inertia::render('admin/members/Index', [
+            'members' => MemberResource::collection($memberService->collection()),
+        ]);
     }
 
     /**
