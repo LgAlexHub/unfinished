@@ -14,10 +14,16 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::create([
-            'name' => 'aleki',
-            'email' => 'alexlegras@hotmail.com',
-            'password' => Hash::make('azerty'),
+        if (!User::query()->where('email', '=', 'alexlegras@hotmail.com')->first()){
+            User::create([
+                'name' => 'aleki',
+                'email' => 'alexlegras@hotmail.com',
+                'password' => Hash::make('azerty'),
+            ]);
+        }
+
+        $this->call([
+            MemberSeeder::class
         ]);
     }
 }
