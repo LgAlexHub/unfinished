@@ -51,7 +51,7 @@ class ContactService extends Service
         return $model;
     }
 
-    public function collection(DTOInterface $dto, array $args): mixed
+    public function collection(array $args = []): mixed
     {
         $isPaginated = $args['isPaginated'] ?? true;
         $perPage = $args['perPage'] ?? 10;

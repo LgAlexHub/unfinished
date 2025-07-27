@@ -19,7 +19,7 @@ abstract class Service
 
     abstract public function update(DTOInterface $dto, Model $model, ?array $args): Model;
 
-    abstract public function collection(DTOInterface $dto, array $args): mixed;
+    abstract public function collection(array $args = []): mixed;
 
     public function destroy(Model $model): ?bool
     {
