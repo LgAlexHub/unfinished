@@ -41,6 +41,10 @@ class Material extends Model
             ->withPivot(['borrowed_at', 'returned_at']);
     }
 
+    public function lastBorrower() : Member|null {
+        return $this->borrowers()->orderBy('borrowed_at', 'desc')->first();
+    }
+
     /**
      * @return MaterialState|null
      */
