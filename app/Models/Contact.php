@@ -20,7 +20,7 @@ class Contact extends Model
     /**
      * @return BelongsTo<Member, $this>
      */
-    public function contact(): BelongsTo
+    public function member(): BelongsTo
     {
         return $this->belongsTo(Member::class);
     }
