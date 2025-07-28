@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, type Ref } from 'vue';
+import { ref, defineEmits, watch, type Ref } from 'vue';
 import CustomCheckbox from './CustomCheckbox.vue';
 
 interface adminNavProps {
@@ -12,7 +12,14 @@ const props = withDefaults(defineProps<adminNavProps>(), {
     withAddAndDelete: true,
 });
 
+const emits = defineEmits(['onCheckAll']);
+
 const checkAll: Ref<boolean> = ref(false);
+
+watch(checkAll, function(newCheckAll){
+    emits("onCheckAll", newCheckAll);
+});
+
 </script>
 
 <template>
