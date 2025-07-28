@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers\admin;
 
+use App\DataTransferObject\MemberDTO;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\MemberRequest;
 use App\Http\Resources\MemberResource;
 use App\Services\MemberService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
 class MemberController extends Controller
@@ -21,12 +24,19 @@ class MemberController extends Controller
         ]);
     }
 
+    public function renderForm() : \Inertia\Response {
+        return Inertia::render('admin/members/Add', [
+
+        ]);
+    }
+
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(MemberRequest $request, MemberService $memberService)
     {
-        //
+        $memberService->store(MemberDTO::fromRequest($request), []);
+        return Redirect::route('membres.index');
     }
 
     /**

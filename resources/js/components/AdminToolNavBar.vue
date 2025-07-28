@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import { ref, defineEmits, watch, type Ref } from 'vue';
 import CustomCheckbox from './CustomCheckbox.vue';
+import { Link } from '@inertiajs/vue3';
 
 interface adminNavProps {
     withSearch?: boolean,
     withAddAndDelete?: boolean,
+    addButtonLink? : string
 }
 
 const props = withDefaults(defineProps<adminNavProps>(), {
@@ -34,7 +36,7 @@ watch(checkAll, function(newCheckAll){
             </div>
             
             <div class="flex gap-2">
-                <button class="group relative p-3 bg-emerald-600/20 hover:bg-emerald-600/30 border border-emerald-500/30 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-emerald-500/20">
+                <Link :href="props.addButtonLink ? route(props.addButtonLink) : ''" class="group relative p-3 bg-emerald-600/20 hover:bg-emerald-600/30 border border-emerald-500/30 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-emerald-500/20">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-5 h-5 fill-emerald-400 group-hover:fill-emerald-300 transition-colors">
                         <path fill-rule="evenodd" clip-rule="evenodd"
                             d="M11.25 12.75V18H12.75V12.75H18V11.25H12.75V6H11.25V11.25H6V12.75H11.25Z" />
@@ -42,7 +44,7 @@ watch(checkAll, function(newCheckAll){
                     <div class="absolute -top-8 left-1/2 transform -translate-x-1/2 px-2 py-1 bg-gray-900 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">
                         Ajouter
                     </div>
-                </button>
+                </Link>
                 
                 <button class="group relative p-3 bg-red-600/20 hover:bg-red-600/30 border border-red-500/30 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-red-500/20">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 fill-red-400 group-hover:fill-red-300 transition-colors" viewBox="0 0 16 16">

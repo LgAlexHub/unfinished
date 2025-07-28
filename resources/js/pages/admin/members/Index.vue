@@ -54,7 +54,7 @@ const breadcrumbs: BreadcrumbItem[] = [
 
     <Head title="Membres" />
     <AppLayout :breadcrumbs="breadcrumbs">
-        <AdminToolNavBar @on-check-all="onCheckALl" />
+        <AdminToolNavBar @on-check-all="onCheckALl" :add-button-link="'members.form.add'" />
         <div class="min-h-[85%] flex flex-col px-6 py-4">
             <div
                 class="h-[100%] bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl border border-gray-700/50 shadow-2xl shadow-black/20 overflow-hidden backdrop-blur-sm">
